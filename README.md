@@ -1,8 +1,7 @@
 # VSS editor: preview builds
 
-Each file under `builds/` is the self-contained one-file build of the VSS editor (open it in a browser, desktop or phone; it works
-offline). The latest build is also this site's page (GitHub Pages). The files are published by the private source repository's
-workflow ("Publish preview build"); nothing of the source is here. The table is rewritten by the workflow at every publish.
+Each file is the self-contained one-file build of the VSS editor (open it in a browser, desktop or phone; works offline). The latest build is also the site's page. Built by the private source repository's workflow; nothing of the source is here.
 
 | build | source commit | built (UTC) | label |
 |---|---|---|---|
+| [vss-editor-20261026-1623-96e6636.html](builds/vss-editor-20261026-1623-96e6636.html) | 96e6636 | 20261026-1623 |  |
