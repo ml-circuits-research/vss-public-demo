@@ -1,9 +1,16 @@
 [
  {
+  "file": "vss-editor-20261026-1746-9312e8b.html",
+  "source_commit": "9312e8b",
+  "built": "20261026-1746",
+  "label": "",
+  "latest": true
+ },
+ {
   "file": "vss-editor-20261026-1623-96e6636.html",
   "source_commit": "96e6636",
   "built": "20261026-1623",
   "label": "",
-  "latest": true
+  "latest": false
  }
 ]
