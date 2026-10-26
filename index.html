@@ -1,3 +1,20 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><title>VSS editor: preview builds</title>
-<meta name="viewport" content="width=device-width,initial-scale=1"><style>body{font-family:system-ui,sans-serif;max-width:720px;margin:3rem auto;padding:0 16px;color:#222;background:#fff}</style></head>
-<body><h1>VSS editor: preview builds</h1><p>No build has been published yet. The first run of the "Publish preview build" workflow in the source repository replaces this page with the latest build and lists every build in <a href="builds/index.json">builds/index.json</a> and the README.</p></body></html>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>body{font-family:system-ui,sans-serif;max-width:720px;margin:3rem auto;padding:0 16px;color:#222;background:#fff}li{margin:.3rem 0}.muted{color:#666}</style></head>
+<body><h1>VSS editor: preview builds</h1>
+<p id="status">Loading the list of builds…</p><ul id="list"></ul>
+<p class="muted">Each build is one self-contained file: open it, or save it and open it offline on a desktop or a phone. The page opens the latest build automatically; add <code>?list</code> to the address to stay on this list.</p>
+<script>
+(async () => {
+  const st = document.getElementById("status"), ul = document.getElementById("list");
+  try {
+    const r = await fetch("builds/index.json", {cache: "no-store"}); const builds = await r.json();
+    if (!builds.length) { st.textContent = "No build has been published yet."; return; }
+    const latest = builds.find(b => b.latest) || builds[0];
+    for (const b of builds) { const li = document.createElement("li"); const a = document.createElement("a"); a.href = "builds/" + b.file; a.textContent = b.file; li.appendChild(a);
+      li.append(`  (source ${b.source_commit}, built ${b.built}${b.label ? ", " + b.label : ""}${b === latest ? ", latest" : ""})`); ul.appendChild(li); }
+    if (!location.search.includes("list")) { st.textContent = "Opening the latest build: " + latest.file; location.replace("builds/" + latest.file); }
+    else st.textContent = "Builds, newest first:";
+  } catch (e) { st.textContent = "The list of builds could not be loaded (builds/index.json)."; }
+})();
+</script></body></html>
